@@ -6,7 +6,7 @@ import java.util.Arrays;
 import static java.lang.Math.abs;
 
 /**
- * A sorting algorithm that implements the Radix method
+ * A sorting algorithm that implements the Radix approach
  *
  * @author Nolan_Hill
  */
