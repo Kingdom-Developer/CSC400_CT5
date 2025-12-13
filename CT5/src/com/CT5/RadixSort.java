@@ -1,0 +1,64 @@
+package com.CT5;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+
+import static java.lang.Math.abs;
+
+/**
+ * A sorting algorithm that implements the Radix method
+ *
+ * @author Nolan_Hill
+ */
+public class RadixSort {
+    /**
+     * The method uses array of ArrayLists to hold each value as they are evaluated
+     * @param values the input array to be sorted
+     */
+    public static void radixSort(int[] values) {
+        // Array of ArrayLists that act as the buckets from 0 to 9
+        ArrayList<Integer>[] buckets = new ArrayList[10];
+
+        // Find largest number in input array
+        int maxNum = Arrays.stream(values).max().getAsInt();
+
+        // Find the highest number of digits that will occur
+        int maxDigits = String.valueOf(abs(maxNum)).length();
+
+        // Initiate each ArrayList (bucket)
+        for (int i = 0; i < 10; i++) {
+            buckets[i] = new ArrayList<>();
+        }
+
+        // Declare and initiated variable to hold location of digit
+        int powerTen = 1;
+
+        // Iterate through elements to fill the buckets from the least significant digit to most
+        for (int digitIndex = 0; digitIndex < maxDigits; digitIndex++) {
+            // Evaluate each element according to the digit location
+            for (int i = 0; i < values.length; i ++) {
+                int bucketNumber = abs(values[i] / powerTen) % 10;
+                buckets[bucketNumber].add(values[i]);
+            }
+
+            // Declare and initializer iterator variable for values array
+            int valuesIndex = 0;
+
+            // Iterate through each buckets
+            for (int i = 0; i < 10; i++) {
+                // Iterate through the values of each bucket and assign them to values array
+                for (int j = 0; j < buckets[i].size(); j++) {
+                    values[valuesIndex] = buckets[i].get(j);
+                    valuesIndex++;
+                }
+            }
+            // Clear values out of the bucket
+            for (int i = 0; i < 10; i++) {
+                buckets[i].clear();
+            }
+
+            // Move to the next significant digit
+            powerTen = powerTen * 10;
+        }
+    }
+}
