@@ -58,6 +58,7 @@ public class RadixSort {
                     values[valuesIndex] = buckets[i].get(j);
                     valuesIndex++;
                 }
+                buckets[i].clear();
             }
             // Clear values out of the bucket
             for (int i = 0; i < 10; i++) {
