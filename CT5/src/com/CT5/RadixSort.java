@@ -6,13 +6,17 @@ import java.util.Arrays;
 import static java.lang.Math.abs;
 
 /**
- * A sorting algorithm that implements the Radix approach
+ * A sorting algorithm that implements the Radix approach.
+ * <p>
+ *  Algorithm that sorts each element of array into buckets from 0-9 based on the digit being evaluated,
+ *  from least significant to most significant.
+ * </p>
  *
  * @author Nolan_Hill
  */
 public class RadixSort {
     /**
-     * The method uses array of ArrayLists to hold each value as they are evaluated
+     * A method that uses array of ArrayLists to hold each value as they are evaluated
      * @param values the input array to be sorted
      */
     public static void radixSort(int[] values) {
@@ -30,18 +34,21 @@ public class RadixSort {
             buckets[i] = new ArrayList<>();
         }
 
-        // Declare and initiated variable to hold location of digit
+        // Declare and initiate variable to hold location of digit
         int powerTen = 1;
+
+        // Variable to hold index of bucket
+        int bucketNumber;
 
         // Iterate through elements to fill the buckets from the least significant digit to most
         for (int digitIndex = 0; digitIndex < maxDigits; digitIndex++) {
             // Evaluate each element according to the digit location
             for (int i = 0; i < values.length; i ++) {
-                int bucketNumber = abs(values[i] / powerTen) % 10;
+                bucketNumber = abs(values[i] / powerTen) % 10;
                 buckets[bucketNumber].add(values[i]);
             }
 
-            // Declare and initializer iterator variable for values array
+            // Declare and initialize iterator variable for values array
             int valuesIndex = 0;
 
             // Iterate through each buckets
