@@ -20,6 +20,16 @@ public class RadixSort {
      * @param values the input array to be sorted
      */
     public static void radixSort(int[] values) {
+        // Check if input array is null
+        if (values == null) {
+            throw new IllegalArgumentException("Invalid entry, input array cannot be null.");
+        }
+
+        // Check if input array is empty
+        if (values.length == 0) {
+            throw new IllegalArgumentException("Invalid entry, input array cannot be empty.");
+        }
+
         // Array of ArrayLists that act as the buckets from 0 to 9
         ArrayList<Integer>[] buckets = new ArrayList[10];
 
